@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Utilitza menys memòria, llevat que estigui en el mode de nit</string>
   <string name="write_answers_disable">Desactiva l\'escriptura en la resposta</string>
   <string name="write_answers_disable_summ">Impedeix que el teclat apareixi en les cartes que contenen camps per escriure la resposta</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">Solució de premsa llarga</string>
   <string name="text_selection_click_summ">Activeu aquesta opció si no podeu seleccionar text amb un clic perllongat</string>
   <string name="dictionary">Diccionari de cerca</string>
@@ -150,8 +152,6 @@
   <string name="pref_keep_screen_on">Mantenir la pantalla encesa</string>
   <string name="pref_keep_screen_on_summ">Desactiva la pantalla de bloqueig</string>
   <string name="convert_fen_text">Suport de notació d\'escacs</string>
-  <string name="filter_google_translate">Des de Google Translate</string>
-  <string name="filter_google_translate_summ">Desa només la paraula original i la seva traducció</string>
   <string name="convert_fen_text_summ">Draw chessboard from Forsyth–Edwards Notation. The notation must be enclosed in [fen][/fen] tags.</string>
   <string name="enable_api_title">Activa l\'API de l\'AnkiDroid</string>
   <string name="enable_api_summary">Deixar altres apps connectar-se a AnkiDroid i llegir / escriure dades sense la seva intervenció</string>

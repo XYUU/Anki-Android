@@ -30,7 +30,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -64,7 +63,6 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -79,11 +77,11 @@ import com.ichi2.compat.CompatHelper;
 import com.ichi2.libanki.Card;
 import com.ichi2.libanki.Collection;
 import com.ichi2.libanki.Consts;
+import com.ichi2.libanki.Note;
 import com.ichi2.libanki.Sched;
 import com.ichi2.libanki.Sound;
 import com.ichi2.libanki.Utils;
 import com.ichi2.themes.HtmlColors;
-import com.ichi2.themes.StyledProgressDialog;
 import com.ichi2.themes.Themes;
 import com.ichi2.utils.DiffEngine;
 import com.ichi2.utils.HtmlUtil;
@@ -470,33 +468,6 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         }
     };
 
-    public DeckTask.TaskListener mMarkCardHandler = new DeckTask.TaskListener() {
-        @Override
-        public void onPreExecute() {
-            showProgressBar();
-        }
-
-
-        @Override
-        public void onProgressUpdate(DeckTask.TaskData... values) {
-            hideProgressBar();
-        }
-
-
-        @Override
-        public void onPostExecute(DeckTask.TaskData result) {
-            refreshActionBar();
-            if (!result.getBoolean()) {
-                // RuntimeException occured on marking cards
-                closeReviewer(DeckPicker.RESULT_DB_ERROR, true);
-            }
-        }
-
-
-        @Override
-        public void onCancelled() {
-        }
-    };
 
     protected DeckTask.TaskListener mDismissCardHandler = new DeckTask.TaskListener() {
         @Override
@@ -974,39 +945,39 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
 
     @Override
     public void onBackPressed() {
-        Timber.d("onBackPressed()");
-        closeReviewer(RESULT_DEFAULT, false);
+        if (isDrawerOpen()) {
+            super.onBackPressed();
+        } else {
+            Timber.i("Back key pressed");
+            closeReviewer(RESULT_DEFAULT, false);
+        }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        /** Enhancement 722: Hardware buttons for scrolling, I.Z. */
-        if (keyCode == 92) {
-            // KeyEvent.KEYCODE_PAGE_UP (available from API 9)
+        // Hardware buttons for scrolling
+        if (keyCode == KeyEvent.KEYCODE_PAGE_UP) {
             mCard.pageUp(false);
             if (mDoubleScrolling) {
                 mCard.pageUp(false);
             }
             return true;
         }
-        if (keyCode == 93) {
-            // KeyEvent.KEYCODE_PAGE_DOWN (available from API 9)
+        if (keyCode == KeyEvent.KEYCODE_PAGE_DOWN) {
             mCard.pageDown(false);
             if (mDoubleScrolling) {
                 mCard.pageDown(false);
             }
             return true;
         }
-        if (mScrollingButtons && keyCode == 94) {
-            // KeyEvent.KEYCODE_PICTSYMBOLS (available from API 9)
+        if (mScrollingButtons && keyCode == KeyEvent.KEYCODE_PICTSYMBOLS) {
             mCard.pageUp(false);
             if (mDoubleScrolling) {
                 mCard.pageUp(false);
             }
             return true;
         }
-        if (mScrollingButtons && keyCode == 95) {
-            // KeyEvent.KEYCODE_SWITCH_CHARSET (available from API 9)
+        if (mScrollingButtons && keyCode == KeyEvent.KEYCODE_SWITCH_CHARSET) {
             mCard.pageDown(false);
             if (mDoubleScrolling) {
                 mCard.pageDown(false);
@@ -1541,28 +1512,28 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
 
         // Set correct label and background resource for each button
         // Note that it's necessary to set the resource dynamically as the ease2 / ease3 buttons
-        // (which libanki expects ease to be 2 and 3) can either be hard, good, or easy -- depending on how many buttons are shown
-        final int[] ANSWER_BUTTON_DRAWABLES = {R.attr.againButtonRef, R.attr.hardButtonRef, R.attr.goodButtonRef, R.attr.easyButtonRef};
-        TypedArray ta = obtainStyledAttributes(ANSWER_BUTTON_DRAWABLES);
+        // (which libanki expects ease to be 2 and 3) can either be hard, good, or easy - depending on num buttons shown
+        final int[] icons = Themes.getResFromAttr(this, new int [] {R.attr.againButtonRef, R.attr.hardButtonRef,
+                R.attr.goodButtonRef, R.attr.easyButtonRef});
         mEase1Layout.setVisibility(View.VISIBLE);
-        mEase1Layout.setBackgroundResource(ta.getResourceId(0, R.drawable.footer_button_again));
-        mEase4Layout.setBackgroundResource(ta.getResourceId(3, R.drawable.footer_button_easy));
+        mEase1Layout.setBackgroundResource(icons[0]);
+        mEase4Layout.setBackgroundResource(icons[3]);
         switch (buttonCount) {
             case 2:
                 // Ease 2 is "good"
                 mEase2Layout.setVisibility(View.VISIBLE);
-                mEase2Layout.setBackgroundResource(ta.getResourceId(2, R.drawable.footer_button_good));
+                mEase2Layout.setBackgroundResource(icons[2]);
                 mEase2.setText(R.string.ease_button_good);
                 mEase2Layout.requestFocus();
                 break;
             case 3:
                 // Ease 2 is good
                 mEase2Layout.setVisibility(View.VISIBLE);
-                mEase2Layout.setBackgroundResource(ta.getResourceId(2, R.drawable.footer_button_good));
+                mEase2Layout.setBackgroundResource(icons[2]);
                 mEase2.setText(R.string.ease_button_good);
                 // Ease 3 is easy
                 mEase3Layout.setVisibility(View.VISIBLE);
-                mEase3Layout.setBackgroundResource(ta.getResourceId(3, R.drawable.footer_button_easy));
+                mEase3Layout.setBackgroundResource(icons[3]);
                 mEase3.setText(R.string.ease_button_easy);
                 mEase2Layout.requestFocus();
                 break;
@@ -1570,17 +1541,16 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
                 mEase2Layout.setVisibility(View.VISIBLE);
                 // Ease 2 is "hard"
                 mEase2Layout.setVisibility(View.VISIBLE);
-                mEase2Layout.setBackgroundResource(ta.getResourceId(1, R.drawable.footer_button_hard));
+                mEase2Layout.setBackgroundResource(icons[1]);
                 mEase2.setText(R.string.ease_button_hard);
                 mEase2Layout.requestFocus();
                 // Ease 3 is good
                 mEase3Layout.setVisibility(View.VISIBLE);
-                mEase3Layout.setBackgroundResource(ta.getResourceId(2, R.drawable.footer_button_good));
+                mEase3Layout.setBackgroundResource(icons[2]);
                 mEase3.setText(R.string.ease_button_good);
                 mEase4Layout.setVisibility(View.VISIBLE);
                 mEase3Layout.requestFocus();
         }
-        ta.recycle();
 
         // Show next review time
         if (mShowNextReviewTime) {
@@ -2463,8 +2433,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
                 editCard();
                 break;
             case GESTURE_MARK:
-                DeckTask.launchDeckTask(DeckTask.TASK_TYPE_MARK_CARD, mMarkCardHandler,
-                        new DeckTask.TaskData(mCurrentCard, 0));
+                onMark(mCurrentCard);
                 break;
             case GESTURE_LOOKUP:
                 lookUpOrSelectText();
@@ -2725,5 +2694,15 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         if (mReplayOnTtsInit) {
             playSounds(true);
         }
+    }
+
+    protected void onMark(Card card) {
+        Note note = card.note();
+        if (note.hasTag("marked")) {
+            note.delTag("marked");
+        } else {
+            note.addTag("marked");
+        }
+        note.flush();
     }
 }

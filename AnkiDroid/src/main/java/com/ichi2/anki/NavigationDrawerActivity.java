@@ -17,7 +17,6 @@ package com.ichi2.anki;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.net.Uri;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +26,7 @@ import android.widget.CompoundButton;
 
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.compat.CompatHelper;
+import com.ichi2.themes.Themes;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -38,6 +38,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondarySwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+import timber.log.Timber;
 
 
 public class NavigationDrawerActivity extends AnkiActivity implements Drawer.OnDrawerItemClickListener,
@@ -74,7 +75,12 @@ public class NavigationDrawerActivity extends AnkiActivity implements Drawer.OnD
         // Setup toolbar
         Toolbar toolbar = (Toolbar) mainView.findViewById(R.id.toolbar);
         if (toolbar != null) {
-            setSupportActionBar(toolbar);
+            try {
+                setSupportActionBar(toolbar);
+            } catch (RuntimeException e) {
+                Timber.e("Error setting toolbar as support actionbar");
+                AnkiDroidApp.sendExceptionReport(e, "Samsung device error using Toolbar");
+            }
         }
         // Create the items for the navigation drawer
         PrimaryDrawerItem deckListItem = new PrimaryDrawerItem().withName(R.string.decks)
@@ -98,11 +104,9 @@ public class NavigationDrawerActivity extends AnkiActivity implements Drawer.OnD
         float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         if (dpHeight > 320 && dpWidth > 320) {
-            int[] attrs = new int[]{R.attr.navDrawerImage};
-            TypedArray ta = obtainStyledAttributes(attrs);
             mHeader = new AccountHeaderBuilder()
                     .withActivity(this)
-                    .withHeaderBackground(ta.getResourceId(0, R.drawable.nav_drawer_logo))
+                    .withHeaderBackground(Themes.getResFromAttr(this, R.attr.navDrawerImage))
                     .withDividerBelowHeader(false)
                     .build();
         }
@@ -228,6 +232,17 @@ public class NavigationDrawerActivity extends AnkiActivity implements Drawer.OnD
 
 
     @Override
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            Timber.i("Back key pressed");
+            mDrawer.closeDrawer();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
     public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
         if (mSelectedItem == iDrawerItem.getIdentifier()) {
             mDrawer.closeDrawer();
@@ -289,5 +304,9 @@ public class NavigationDrawerActivity extends AnkiActivity implements Drawer.OnD
 
     protected void setCurrentCardId(long id) {
         mCurrentCardId = id;
+    }
+
+    public boolean isDrawerOpen() {
+        return mDrawer.isDrawerOpen();
     }
 }

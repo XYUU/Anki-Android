@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Utilizza meno memoria, ma non funziona in modalità notte</string>
   <string name="write_answers_disable">Disabilita digitazione della risposta</string>
   <string name="write_answers_disable_summ">Impedisce alla tastiera di apparire su carte contenenti campi di immissione della risposta</string>
+  <string name="use_input_tag">Digita la risposta nella carta</string>
+  <string name="use_input_tag_summ">Utilizza una casella di inserimento testo nella carta per digitare la risposta</string>
   <string name="text_selection_click">Soluzione problema click lungo</string>
   <string name="text_selection_click_summ">Attiva questo se non sei in grado di iniziare la selezione di testo con un clic lungo</string>
   <string name="dictionary">Ricerca nel dizionario</string>
@@ -150,8 +152,6 @@
   <string name="pref_keep_screen_on">Mantieni schermo acceso</string>
   <string name="pref_keep_screen_on_summ">Disabilita il timeout dello schermo</string>
   <string name="convert_fen_text">Supporto per la notazione scacchistica</string>
-  <string name="filter_google_translate">Da Traduttore Google</string>
-  <string name="filter_google_translate_summ">Salva unicamente la parola di origine e la traduzione</string>
   <string name="convert_fen_text_summ">Disegna la scacchiera dalla notazione Forsyth-Edwards. La notazione deve essere racchiusa nelle etichette [fen] [/fen].</string>
   <string name="enable_api_title">Attiva API AnkiDroid</string>
   <string name="enable_api_summary">Permetti ad altre applicazioni di connettersi ad AnkiDroid e di leggere / scrivere dati senza il tuo intervento</string>

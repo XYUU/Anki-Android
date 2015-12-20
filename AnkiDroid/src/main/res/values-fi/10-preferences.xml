@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Käyttää vähemmän muistia, mutta ei silloin, kun yötila on päällä</string>
   <string name="write_answers_disable">Ota vastauksen kirjoittaminen pois käytöstä</string>
   <string name="write_answers_disable_summ">Estää näppäimistöä tulemasta esille korteissa, joissa on \'kirjoita vastaus\'-kenttiä</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">Korjaa pitkät painallukset</string>
   <string name="text_selection_click_summ">Ota käyttöön, jos et pysty aloittamaan tekstivalintaa pitkällä painalluksella</string>
   <string name="dictionary">Sanakirja</string>
@@ -151,8 +153,6 @@
   <string name="pref_keep_screen_on">Pidä näyttö päällä</string>
   <string name="pref_keep_screen_on_summ">Poista näytön aikakatkaisu</string>
   <string name="convert_fen_text">Tuki shakkinotaatiolle</string>
-  <string name="filter_google_translate">Google Translaten mukaan</string>
-  <string name="filter_google_translate_summ">Tallenna vain lähdesana ja käännös</string>
   <string name="convert_fen_text_summ">Piirrä shakkilauta Forsyth-Edwards-notaatiolla. Tekstin pitää olla ympäröity [fen][/fen] tunnisteilla.</string>
   <string name="enable_api_title">Enable AnkiDroid API</string>
   <string name="enable_api_summary">Let other apps connect to AnkiDroid and read / write data without your intervention</string>

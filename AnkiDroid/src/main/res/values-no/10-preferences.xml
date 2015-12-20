@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Uses less memory, unless in night mode</string>
   <string name="write_answers_disable">Disable typing in answer</string>
   <string name="write_answers_disable_summ">Prevents keyboard from appearing on cards containing type-the-answer fields</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">Long press workaround</string>
   <string name="text_selection_click_summ">Aktiver dette hvis du ikke kan starte velging av tekst med langt klikk</string>
   <string name="dictionary">Lookup dictionary</string>
@@ -151,8 +153,6 @@
   <string name="pref_keep_screen_on">Keep screen on</string>
   <string name="pref_keep_screen_on_summ">Disable screen timeout</string>
   <string name="convert_fen_text">Støtte for sjakk-notasjon</string>
-  <string name="filter_google_translate">Fra Google Oversetter</string>
-  <string name="filter_google_translate_summ">Lagre kun kildeord og oversettelse</string>
   <string name="convert_fen_text_summ">Draw chessboard from Forsyth–Edwards Notation. The notation must be enclosed in [fen][/fen] tags.</string>
   <string name="enable_api_title">Enable AnkiDroid API</string>
   <string name="enable_api_summary">Let other apps connect to AnkiDroid and read / write data without your intervention</string>

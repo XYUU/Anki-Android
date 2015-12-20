@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">حافظه کمتری استفاده می‌کند، اما در حالت شب کار نمی‌کند</string>
   <string name="write_answers_disable">غیر فعال کردن تایپ پاسخ</string>
   <string name="write_answers_disable_summ">Prevents keyboard from appearing on cards containing type-the-answer fields</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">راه‌حل کلیک طولانی</string>
   <string name="text_selection_click_summ">اگر از طریق کلیک طولانی نمی توانید متن را انتخاب کنید این را انجام دهید</string>
   <string name="dictionary">فرهنگ لغت برای مراجعه</string>
@@ -151,8 +153,6 @@
   <string name="pref_keep_screen_on">روشن نگه‌داشتن صفحه</string>
   <string name="pref_keep_screen_on_summ">غیرفعال کردن زمان خاموش شدن صفحه نمایش</string>
   <string name="convert_fen_text">پشتیبانی از ثبت حرکات شطرنج</string>
-  <string name="filter_google_translate">ترجمه از گوگل</string>
-  <string name="filter_google_translate_summ">اکنون کلمه اصلی و ترجمه را ذخیره کنید</string>
   <string name="convert_fen_text_summ">رسم صفحه شطرنجی از Forsyth Edwards Notation. یادداشت باید داخل تگ [fen][/fen] محصور باشد</string>
   <string name="enable_api_title">Enable AnkiDroid API</string>
   <string name="enable_api_summary">Let other apps connect to AnkiDroid and read / write data without your intervention</string>

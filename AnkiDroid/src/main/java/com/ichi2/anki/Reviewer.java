@@ -117,7 +117,8 @@ public class Reviewer extends AbstractFlashcardViewer {
 
             case R.id.action_mark_card:
                 Timber.i("Reviewer:: Mark button pressed");
-                DeckTask.launchDeckTask(DeckTask.TASK_TYPE_MARK_CARD, mMarkCardHandler, new DeckTask.TaskData(mCurrentCard, 0));
+                onMark(mCurrentCard);
+                refreshActionBar();
                 break;
 
             case R.id.action_replay:
@@ -287,7 +288,8 @@ public class Reviewer extends AbstractFlashcardViewer {
 	            return true;
 	        }
 	        if (keyPressed == '*') {
-	            DeckTask.launchDeckTask(DeckTask.TASK_TYPE_MARK_CARD, mMarkCardHandler, new DeckTask.TaskData(mCurrentCard, 0));
+                onMark(mCurrentCard);
+                refreshActionBar();
 	            return true;
 	        }
 	        if (keyPressed == '-') {
@@ -433,7 +435,9 @@ public class Reviewer extends AbstractFlashcardViewer {
     @Override
     public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
         // Tell the browser the current card ID so that it can tell us when we need to reload
-        setCurrentCardId(mCurrentCard.getId());
+        if (mCurrentCard != null) {
+            setCurrentCardId(mCurrentCard.getId());
+        }
         return super.onItemClick(view, i, iDrawerItem);
     }
 

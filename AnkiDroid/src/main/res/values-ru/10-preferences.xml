@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Использует меньше памяти, если не в ночном режиме</string>
   <string name="write_answers_disable">Отключить ввод ответа</string>
   <string name="write_answers_disable_summ">Блокировать появление клавиатуры в картах, содержащих поле \"введите ответ\"</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">Исправление ошибки долгого зажатия</string>
   <string name="text_selection_click_summ">Включите, если не удаётся начать выделение текста через длинное нажатие</string>
   <string name="dictionary">Посмотреть в словаре</string>
@@ -151,8 +153,6 @@
   <string name="pref_keep_screen_on">Не выключать экран</string>
   <string name="pref_keep_screen_on_summ">Отключить таймаут экрана</string>
   <string name="convert_fen_text">Поддержка шахматной нотации</string>
-  <string name="filter_google_translate">Из Google-Переводчика</string>
-  <string name="filter_google_translate_summ">Сохранить только исходное слово и перевод</string>
   <string name="convert_fen_text_summ">Нарисовать шахматную доску из Нотации Форсайта — Эдвардса. Нотация должна быть заключена в [fen][/fen] теги.</string>
   <string name="enable_api_title">Enable AnkiDroid API</string>
   <string name="enable_api_summary">Let other apps connect to AnkiDroid and read / write data without your intervention</string>

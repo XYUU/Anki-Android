@@ -64,6 +64,8 @@
   <string name="whiteboard_black_summ">Utilizar menos memória, exceto no modo noturno</string>
   <string name="write_answers_disable">Desativar digitação em resposta</string>
   <string name="write_answers_disable_summ">Impede que o teclado apareça em cartões contendo campos \'escreva a resposta\'</string>
+  <string name="use_input_tag">Type answer into the card</string>
+  <string name="use_input_tag_summ">Use a text input box inside the card to type in the answer</string>
   <string name="text_selection_click">Solução alternativa de pressão longa</string>
   <string name="text_selection_click_summ">Ative isso se você não é capaz de iniciar a seleção de texto por meio de clique longo</string>
   <string name="dictionary">Dicionário de busca</string>
@@ -150,8 +152,6 @@
   <string name="pref_keep_screen_on">Manter tela ligada</string>
   <string name="pref_keep_screen_on_summ">Desativar tempo limite da tela</string>
   <string name="convert_fen_text">Suporte para notação de xadrez</string>
-  <string name="filter_google_translate">Do Google Translate</string>
-  <string name="filter_google_translate_summ">Salvar somente a palavra original e a tradução</string>
   <string name="convert_fen_text_summ">Desenhar tabuleiro de xadrez a partir da Notação Forsyth-Edwards. A notação deve estar delimitada pelas tags [fen][/fen].</string>
   <string name="enable_api_title">Habilitar o AnkiDroid API</string>
   <string name="enable_api_summary">Deixe outros apps se conectarem ao AnkiDroid e ler / escrever dados sem a sua intervenção</string>
